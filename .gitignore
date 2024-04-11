@@ -1,2 +1,13 @@
-termpandas/__pycache__/
+# Python compiling artifacts
+__pycache__/
 *.pyc
+*.pyo
+*.pyd
+
+# packaging artifacts
+build/
+dist/
+*.egg-info/
+
+# Virtual Environment
+venv39/
