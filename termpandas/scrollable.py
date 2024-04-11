@@ -5,8 +5,6 @@ import pandas as pd
 from blessings import Terminal
 from curtsies import Input
 
-df = pd.read_csv('titanic.csv')
-
 def tprint(df_input, num_rows=10):
     t = Terminal()
     start = 0
@@ -116,4 +114,5 @@ def tprint(df_input, num_rows=10):
             info_str = info_str.ljust(t.width)
             print(t.move_up + info_str + t.clear_eol)
 
-tprint(df, num_rows=10)
+# Example Usage
+# tprint(df, num_rows=10)
