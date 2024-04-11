@@ -1,13 +1,19 @@
 from setuptools import setup, find_packages
 
+# Load the README file and use it as the long_description.
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
 setup(
     name='termpandas',
-    version='0.0.1',
-    url='https://github.com/username/termpandas',
-    author='Author Name',
-    author_email='author@gmail.com',
-    description='Scrollable pandas dataframes in the terminal',
-    packages=find_packages(),    
+    version='0.0.4',
+    url='https://github.com/juan-esteban-berger/termpandas',
+    author='Juan Esteban Berger',
+    author_email='juanestebanberger@gmail.com',
+    description='Scrollable pandas dataframes in the terminal.',
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    packages=find_packages(),
     install_requires=[
         'pandas>=2.1.4',
         'blessings>=1.7',
@@ -22,4 +28,7 @@ setup(
         "Programming Language :: Python :: 3.10",
         "Operating System :: OS Independent",
     ],
+    project_urls={
+        'Source Code': 'https://github.com/juan-esteban-berger/termpandas'
+    }
 )
