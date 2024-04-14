@@ -17,7 +17,7 @@ df = pd.read_csv('titanic.csv')
 tprint(df)
 ```
 
-![tprint.gif](https://raw.githubusercontent.com/juan-esteban-berger/termpandas/main/tprint.gif)
+![tprint_demo.gif](https://raw.githubusercontent.com/juan-esteban-berger/termpandas/main/tprint_demo.gif)
 
 - Key Bindings:
     - `k` or `Up Arrow Key` to scroll up
