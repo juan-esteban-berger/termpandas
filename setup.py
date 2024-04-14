@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='termpandas',
-    version='0.0.5',
+    version='0.0.6',
     url='https://github.com/juan-esteban-berger/termpandas',
     author='Juan Esteban Berger',
     author_email='juanestebanberger@gmail.com',
