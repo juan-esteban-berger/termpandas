@@ -11,3 +11,6 @@ dist/
 
 # Virtual Environment
 venv39/
+
+# Local Utility
+package.sh
