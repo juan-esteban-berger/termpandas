@@ -21,9 +21,9 @@ tprint(df)
 
 - Key Bindings:
     - `k` or `Up Arrow Key` to scroll up
-    - 'j' or `Down Arrow Key` to scroll down
-    - 'h' or `Left Arrow Key` to scroll left
-    - 'l' or `Right Arrow Key` to scroll right
+    - `j` or `Down Arrow Key` to scroll down
+    - `h` or `Left Arrow Key` to scroll left
+    - `l` or `Right Arrow Key` to scroll right
     - `q` to quit
 
 ## Optional Parameters
