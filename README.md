@@ -20,11 +20,11 @@ tprint(df)
 ![tprint.gif](https://raw.githubusercontent.com/juan-esteban-berger/termpandas/main/tprint.gif)
 
 - Key Bindings:
-    - k to scroll up
-    - j to scroll down
-    - h to scroll left
-    - l to scroll right
-    - q to quit
+    - `k` or `Up Arrow Key` to scroll up
+    - 'j' or `Down Arrow Key` to scroll down
+    - 'h' or `Left Arrow Key` to scroll left
+    - 'l' or `Right Arrow Key` to scroll right
+    - `q` to quit
 
 ## Optional Parameters
 
