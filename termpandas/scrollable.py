@@ -37,7 +37,19 @@ def process_logic(t, df_input, start, end, start_row, end_row):
                 message = '\n'.join(lines)
                 end += 1
         end -= 1
-        message = add_divider(message, t.width)
+        # Calculate the length of the divider,
+        # i.e., the length of the longest line in the message
+        longest_line = 0
+        message_lines = message.split('\n')
+        for i in range(len(message_lines)):
+            # strip the trailing white spaces
+            temp = message_lines[i].rstrip()
+            temp_len = len(temp)
+            if temp_len > longest_line:
+                longest_line = temp_len
+
+        # Add the Divider
+        message = add_divider(message, longest_line)
 
     elif df_input.shape[1] == 1:
         df = df_input.iloc[start_row:end_row, start:end+1]
@@ -50,13 +62,23 @@ def process_logic(t, df_input, start, end, start_row, end_row):
         diff = max_len - t.width
         lines = [line.ljust(t.width) for line in lines]
         message = '\n'.join(lines)
-        message = add_divider(message, t.width)
+        # Calculate the length of the divider,
+        # i.e., the length of the longest line in the message
+        longest_line = 0
+        message_lines = message.split('\n')
+        for i in range(len(message_lines)):
+            # strip the trailing white spaces
+            temp = message_lines[i].rstrip()
+            temp_len = len(temp)
+            if temp_len > longest_line:
+                longest_line = temp_len
+        message = add_divider(message, longest_line)
 
     return start, end, start_row, end_row, num_lines, message
 
 #########################################################################
 # Initial Printing Function
-def initial_print(t, df_input, start, end, start_row, end_row, message, masks):
+def initial_print(t, df_input, start, end, start_row, end_row, message, highlight, highlight_color, masks):
     # If masks is a pandas masks
     if masks is not None:
         # Foreground
@@ -91,21 +113,40 @@ def initial_print(t, df_input, start, end, start_row, end_row, message, masks):
                     # Add the index to the mapping
                     index_colors[index] = key
 
+        terminal_length = t.width
         # Print the DataFrame
         for i, line in enumerate(message):
+            line = line.rstrip()
+            line_length = len(line)
+            num_spaces_to_add = terminal_length - line_length
             if i == 0 or i == 1:
-                print(line)
-            elif i-2+start_row in index_colors:
-                if index_colors[i-2+start_row] == 'Red':
-                    print(BG_RED + BRIGHT_WHITE + line + RESET)
-                elif index_colors[i-2+start_row] == 'Blue':
-                    print(BG_BLUE + BRIGHT_WHITE + line + RESET)
-                elif index_colors[i-2+start_row] == 'Magenta':
-                    print(BG_MAGENTA + BRIGHT_WHITE + line + RESET)
-                elif index_colors[i-2+start_row] == 'Gray':
-                    print(BG_GRAY + BRIGHT_WHITE + line + RESET)
+                print(line + ' '*num_spaces_to_add)
+
+            elif highlight != False:
+                if i-2+start_row in index_colors:
+                    if highlight_color == 'Red':
+                        print(BG_RED + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
+                    elif highlight_color == 'Blue':
+                        print(BG_BLUE + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
+                    elif highlight_color == 'Magenta':
+                        print(BG_MAGENTA + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
+                    elif highlight_color == 'Gray':
+                        print(BG_GRAY + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
+                else:
+                    print(line + ' '*num_spaces_to_add)
+
             else:
-                print(line)
+                if i-2+start_row in index_colors:
+                    if index_colors[i-2+start_row] == 'Red':
+                        print(BG_RED + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
+                    elif index_colors[i-2+start_row] == 'Blue':
+                        print(BG_BLUE + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
+                    elif index_colors[i-2+start_row] == 'Magenta':
+                        print(BG_MAGENTA + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
+                    elif index_colors[i-2+start_row] == 'Gray':
+                        print(BG_GRAY + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
+                else:
+                    print(line + ' '*num_spaces_to_add)
 
         # Print total number of rows and columns
         if df_input.shape[1] > 1:
@@ -130,7 +171,7 @@ def initial_print(t, df_input, start, end, start_row, end_row, message, masks):
 
 #########################################################################
 # Printing After Input Logic
-def after_print(t, df_input, start, end, start_row, end_row, num_lines, message, masks):
+def after_print(t, df_input, start, end, start_row, end_row, num_lines, message, highlight, highlight_color, masks):
     if masks is not None:
         moves = ''
         for i in range(num_lines):
@@ -169,21 +210,40 @@ def after_print(t, df_input, start, end, start_row, end_row, num_lines, message,
                     # Add the index to the mapping
                     index_colors[index] = key
 
+        terminal_length = t.width
         # Print the DataFrame
         for i, line in enumerate(message):
+            line = line.rstrip()
+            line_length = len(line)
+            num_spaces_to_add = terminal_length - line_length
             if i == 0 or i == 1:
-                print(line)
-            elif i-2+start_row in index_colors:
-                if index_colors[i-2+start_row] == 'Red':
-                    print(BG_RED + BRIGHT_WHITE + line + RESET)
-                elif index_colors[i-2+start_row] == 'Blue':
-                    print(BG_BLUE + BRIGHT_WHITE + line + RESET)
-                elif index_colors[i-2+start_row] == 'Magenta':
-                    print(BG_MAGENTA + BRIGHT_WHITE + line + RESET)
-                elif index_colors[i-2+start_row] == 'Gray':
-                    print(BG_GRAY + BRIGHT_WHITE + line + RESET)
+                print(line + ' '*num_spaces_to_add)
+
+            elif highlight != False:
+                if i-2+start_row in index_colors:
+                    if highlight_color == 'Red':
+                        print(BG_RED + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
+                    elif highlight_color == 'Blue':
+                        print(BG_BLUE + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
+                    elif highlight_color == 'Magenta':
+                        print(BG_MAGENTA + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
+                    elif highlight_color == 'Gray':
+                        print(BG_GRAY + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
+                else:
+                    print(line + ' '*num_spaces_to_add)
+
             else:
-                print(line)
+                if i-2+start_row in index_colors:
+                    if index_colors[i-2+start_row] == 'Red':
+                        print(BG_RED + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
+                    elif index_colors[i-2+start_row] == 'Blue':
+                        print(BG_BLUE + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
+                    elif index_colors[i-2+start_row] == 'Magenta':
+                        print(BG_MAGENTA + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
+                    elif index_colors[i-2+start_row] == 'Gray':
+                        print(BG_GRAY + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
+                else:
+                    print(line + ' '*num_spaces_to_add)
 
         # Print total number of rows and columns
         if df_input.shape[1] > 1:
@@ -212,7 +272,12 @@ def after_print(t, df_input, start, end, start_row, end_row, num_lines, message,
 
 #########################################################################
 # Function to print the DataFrame
-def tprint(df_input, num_rows=10, masks=None):
+def tprint(df_input,
+           num_rows=10,
+           highlight=False,
+           highlight_color='Gray',
+           return_row=False,
+           masks=None):
 #########################################################################
 # Ensure df_input is a Pandas DataFrame
     # if df_input is a pandas Series
@@ -245,7 +310,7 @@ def tprint(df_input, num_rows=10, masks=None):
         start = 0
         end = 0
         start, end, start_row, end_row, num_lines, message = process_logic(t, df_input, start, end, start_row, end_row) 
-        initial_print(t, df_input, start, end, start_row, end_row, message, masks)
+        initial_print(t, df_input, start, end, start_row, end_row, message, highlight, highlight_color, masks)
 
 #########################################################################
 # Input Logic
@@ -289,7 +354,7 @@ def tprint(df_input, num_rows=10, masks=None):
 
 #########################################################################
 # Print DataFrame after input logic
-            after_print(t, df_input, start, end, start_row, end_row, num_lines, message, masks)
+            after_print(t, df_input, start, end, start_row, end_row, num_lines, message, highlight, highlight_color, masks)
 
 # Example Usage
 # tprint(df, num_rows=10)
