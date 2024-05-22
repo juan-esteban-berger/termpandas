@@ -65,7 +65,7 @@ mask_1 = df['Survived'] == 1
 mask_2 = df['Sex'] == 'male'
 tprint(df,
        highlight=True,
-       highlight_color='Red',
+       highlight_color='Gray',
        masks={'Red': mask_1,'Blue': mask_2})
 # tprint(df, highlight=False, masks={'Red': mask_1,'Blue': mask_2})
 # tprint(series, highlight=True, masks={'Red': mask_1,'Blue': mask_2})

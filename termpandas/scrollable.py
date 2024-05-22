@@ -123,7 +123,9 @@ def initial_print(t, df_input, start, end, start_row, end_row, message, highligh
                 print(line + ' '*num_spaces_to_add)
 
             elif highlight != False:
-                if i-2+start_row in index_colors:
+                # if the index is for the first row being displayed
+                if i == 2:
+                # if i-2+start_row in index_colors:
                     if highlight_color == 'Red':
                         print(BG_RED + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
                     elif highlight_color == 'Blue':
@@ -171,7 +173,7 @@ def initial_print(t, df_input, start, end, start_row, end_row, message, highligh
 
 #########################################################################
 # Printing After Input Logic
-def after_print(t, df_input, start, end, start_row, end_row, num_lines, message, highlight, highlight_color, masks):
+def after_print(t, df_input, start, end, start_row, end_row, num_lines, message, highlight, highlight_color, masks, row_counter):
     if masks is not None:
         moves = ''
         for i in range(num_lines):
@@ -220,7 +222,7 @@ def after_print(t, df_input, start, end, start_row, end_row, num_lines, message,
                 print(line + ' '*num_spaces_to_add)
 
             elif highlight != False:
-                if i-2+start_row in index_colors:
+                if i == row_counter:
                     if highlight_color == 'Red':
                         print(BG_RED + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
                     elif highlight_color == 'Blue':
@@ -278,6 +280,7 @@ def tprint(df_input,
            highlight_color='Gray',
            return_row=False,
            masks=None):
+    row_counter = 2
 #########################################################################
 # Ensure df_input is a Pandas DataFrame
     # if df_input is a pandas Series
@@ -339,22 +342,28 @@ def tprint(df_input,
 #########################################################################
 # Press 'k' or 'KEY_UP' to move up
             elif e in ['k', 'KEY_UP'] and start_row > 0:  # move up; 
-                start_row -= 1 
-                end_row -= 1 
-                end = start + 1
+                if row_counter > 2:
+                    row_counter -= 1
+                if row_counter == 2:
+                    start_row -= 1 
+                    end_row -= 1 
+                    end = start + 1
                 start, end, start_row, end_row, num_lines, message = process_logic(t, df_input, start, end, start_row, end_row) 
 
 #########################################################################
 # Press 'j' or 'KEY_DOWN' to move down
             elif e in ['j', 'KEY_DOWN'] and end_row < len(df_input):  # move down;
-                start_row += 1
-                end_row += 1
-                end = start + 1
+                if row_counter < num_lines+1:
+                    row_counter += 1
+                if row_counter == num_lines+1:
+                    start_row += 1
+                    end_row += 1
+                    end = start + 1
                 start, end, start_row, end_row, num_lines, message = process_logic(t, df_input, start, end, start_row, end_row) 
 
 #########################################################################
 # Print DataFrame after input logic
-            after_print(t, df_input, start, end, start_row, end_row, num_lines, message, highlight, highlight_color, masks)
+            after_print(t, df_input, start, end, start_row, end_row, num_lines, message, highlight, highlight_color, masks, row_counter)
 
 # Example Usage
 # tprint(df, num_rows=10)
