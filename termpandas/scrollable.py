@@ -317,6 +317,13 @@ def tprint(df_input,
             if e in ['q']:  # quit
                 break
 #########################################################################
+# Press '\n' to select a row
+            if e in ['\n']:  # select row
+                # add conditions to return only the highlighted row
+                if highlight and return_row == True:
+                    # Calculate the highlighted row
+                    return df_input.iloc[[start_row + row_counter - 2]]
+#########################################################################
 # Press 'h' or 'KEY_LEFT' to move left
             elif e in ['h', 'KEY_LEFT'] and start > 0:  # move left;
                 start -= 1

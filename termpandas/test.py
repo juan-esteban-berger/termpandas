@@ -14,7 +14,10 @@ series2 = pl.Series(series)
 #######################################################################
 # Pandas Tests
 # Print DataFrame
-tprint(df.head(20), highlight=True)
+# tprint(df.head(20))
+
+# Print DataFrame without highlight
+tprint(df.head(20), highlight=False)
 
 # Print DataFrame with 1 Mask
 # mask_1 = df['Survived'] == 1
@@ -61,16 +64,25 @@ tprint(df.head(20), highlight=True)
 
 #######################################################################
 # Highlight and Return Selected Row
-mask_1 = df['Survived'] == 1
-mask_2 = df['Sex'] == 'male'
+# mask_1 = df['Survived'] == 1
+# mask_2 = df['Sex'] == 'male'
 # tprint(df,
 #        highlight=True,
 #        highlight_color='Gray',
 #        masks={'Red': mask_1,'Blue': mask_2})
 # tprint(series, highlight=True, masks={'Red': mask_1,'Blue': mask_2})
 
+# Highlight with Masks
+# mask_1 = df['Survived'] == 1
+# mask_2 = df['Sex'] == 'male'
+# tprint(df.head(30),
+#        highlight=True,
+#        highlight_color='Gray',
+#        masks={'Red': mask_1})
 
-tprint(df.head(30),
-       highlight=True,
-       highlight_color='Gray',
-       masks={'Red': mask_1})
+result = tprint(df.head(20), highlight=True, return_row=True)
+try:
+    tprint(result)
+except:
+    print("Quit termpandas: No row selected")
+
