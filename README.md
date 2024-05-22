@@ -1,5 +1,7 @@
 # termpandas
-Scrollable Pandas DataFrames in the Terminal.
+Scrollable Pandas and Polars DataFrames in the Terminal.
+
+![tprint_demo.gif](https://raw.githubusercontent.com/juan-esteban-berger/termpandas/main/tprint_demo.gif)
 
 ## Installation
 
@@ -7,7 +9,7 @@ Scrollable Pandas DataFrames in the Terminal.
 pip install termpandas
 ```
 
-## Usage
+## Basic Usage
 
 ```python
 import pandas as pd
@@ -17,8 +19,6 @@ df = pd.read_csv('titanic.csv')
 tprint(df)
 ```
 
-![tprint_demo.gif](https://raw.githubusercontent.com/juan-esteban-berger/termpandas/main/tprint_demo.gif)
-
 - Key Bindings:
     - `k` or `Up Arrow Key` to scroll up
     - `j` or `Down Arrow Key` to scroll down
@@ -26,9 +26,42 @@ tprint(df)
     - `l` or `Right Arrow Key` to scroll right
     - `q` to quit
 
-## Optional Parameters
+## Parameters
 
 - `num_rows`: Number of rows to display at a time. Default is 10.
 ```python
 tprint(df, num_rows=5)
 ```
+
+- `highlight`: Highlights the selected row. Default is `True`.
+```python
+tprint(df, highlight=True)
+```
+
+- `highlight_color`: Color of the selected row. Default is `Gray`.
+```python
+tprint(df, highlight=True)
+```
+
+- `masks`: Dictionary of masks to highlight rows. Default is `{}`. The keys are the colors and the values are the masks.
+```python
+mask_1 = df['Survived'] == 1
+mask_2 = df['Sex'] == 'male'
+tprint(df.head(20), masks={'Red': mask_1,'Blue': mask_2})
+```
+
+- `return_now`: Returns the selected row. Default is `False`.
+```python
+result = tprint(df.head(20), return_row=True)
+try:
+    tprint(result)
+except:
+    print("Quit termpandas: No row selected")
+```
+
+## Available Colors
+
+- `Red`
+- `Blue`
+- `Magenta`
+- `Gray`
