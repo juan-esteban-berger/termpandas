@@ -343,24 +343,38 @@ def tprint(df_input,
 #########################################################################
 # Press 'k' or 'KEY_UP' to move up
             elif e in ['k', 'KEY_UP']:  # move up; 
-                if row_counter > 2:
-                    row_counter -= 1
-                if row_counter == 2 and start_row > 0:
-                    start_row -= 1 
-                    end_row -= 1 
-                    end = start + 1
-                    start, end, start_row, end_row, num_lines, message = process_logic(t, df_input, start, end, start_row, end_row) 
+                if highlight == True:
+                    if row_counter > 2:
+                        row_counter -= 1
+                    if row_counter == 2 and start_row > 0:
+                        start_row -= 1 
+                        end_row -= 1 
+                        end = start + 1
+                        start, end, start_row, end_row, num_lines, message = process_logic(t, df_input, start, end, start_row, end_row) 
+                else:
+                    if start_row > 0:
+                        start_row -= 1 
+                        end_row -= 1 
+                        end = start + 1
+                        start, end, start_row, end_row, num_lines, message = process_logic(t, df_input, start, end, start_row, end_row)
 
 #########################################################################
 # Press 'j' or 'KEY_DOWN' to move down
             elif e in ['j', 'KEY_DOWN']:  # move down;
-                if row_counter < num_lines+1:
-                    row_counter += 1
-                if row_counter == num_lines+1 and end_row < len(df_input):
-                    start_row += 1
-                    end_row += 1
-                    end = start + 1
-                    start, end, start_row, end_row, num_lines, message = process_logic(t, df_input, start, end, start_row, end_row) 
+                if highlight == True:
+                    if row_counter < num_lines+1:
+                        row_counter += 1
+                    if row_counter == num_lines+1 and end_row < len(df_input):
+                        start_row += 1
+                        end_row += 1
+                        end = start + 1
+                        start, end, start_row, end_row, num_lines, message = process_logic(t, df_input, start, end, start_row, end_row) 
+                else:
+                    if end_row < len(df_input):
+                        start_row += 1
+                        end_row += 1
+                        end = start + 1
+                        start, end, start_row, end_row, num_lines, message = process_logic(t, df_input, start, end, start_row, end_row)
 
 #########################################################################
 # Print DataFrame after input logic
