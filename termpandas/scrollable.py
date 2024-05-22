@@ -134,6 +134,17 @@ def initial_print(t, df_input, start, end, start_row, end_row, message, highligh
                         print(BG_MAGENTA + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
                     elif highlight_color == 'Gray':
                         print(BG_GRAY + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
+
+                elif i-2+start_row in index_colors and i != 2:
+                    if index_colors[i-2+start_row] == 'Red':
+                        print(BG_RED + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
+                    elif index_colors[i-2+start_row] == 'Blue':
+                        print(BG_BLUE + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
+                    elif index_colors[i-2+start_row] == 'Magenta':
+                        print(BG_MAGENTA + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
+                    elif index_colors[i-2+start_row] == 'Gray':
+                        print(BG_GRAY + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
+
                 else:
                     print(line + ' '*num_spaces_to_add)
 
@@ -230,6 +241,15 @@ def after_print(t, df_input, start, end, start_row, end_row, num_lines, message,
                     elif highlight_color == 'Magenta':
                         print(BG_MAGENTA + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
                     elif highlight_color == 'Gray':
+                        print(BG_GRAY + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
+                elif i-2+start_row in index_colors:
+                    if index_colors[i-2+start_row] == 'Red':
+                        print(BG_RED + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
+                    elif index_colors[i-2+start_row] == 'Blue':
+                        print(BG_BLUE + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
+                    elif index_colors[i-2+start_row] == 'Magenta':
+                        print(BG_MAGENTA + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
+                    elif index_colors[i-2+start_row] == 'Gray':
                         print(BG_GRAY + BRIGHT_WHITE + line + RESET + ' '*num_spaces_to_add)
                 else:
                     print(line + ' '*num_spaces_to_add)
