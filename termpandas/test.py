@@ -14,7 +14,7 @@ series2 = pl.Series(series)
 #######################################################################
 # Pandas Tests
 # Print DataFrame
-# tprint(df.head(20))
+tprint(df.head(20), highlight=True)
 
 # Print DataFrame with 1 Mask
 # mask_1 = df['Survived'] == 1
