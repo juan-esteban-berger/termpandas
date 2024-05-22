@@ -1,6 +1,6 @@
 Change Log
 ===========
-0.2.0 (May 22, 2024)
+0.2.1 (May 22, 2024)
  — — — — — — — — — -
 - Fixed bugs when printing pandas series
 - Added support for polars dataframes
