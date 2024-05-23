@@ -24,6 +24,7 @@ tprint(df)
     - `j` or `Down Arrow Key` to scroll down
     - `h` or `Left Arrow Key` to scroll left
     - `l` or `Right Arrow Key` to scroll right
+    - `enter` to select a row
     - `q` to quit
 
 ## Parameters
@@ -50,7 +51,7 @@ mask_2 = df['Sex'] == 'male'
 tprint(df.head(20), masks={'Red': mask_1,'Blue': mask_2})
 ```
 
-- `return_now`: Returns the selected row. Default is `False`.
+- `return_row`: Returns the selected row. Default is `False`. Press `enter` to select a row.
 ```python
 result = tprint(df.head(20), return_row=True)
 try:

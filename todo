@@ -1,0 +1,10 @@
+- [x] Add polars to the list of dependencies.
+- [x] Add windows_curses to list of dependencies.
+	- [ ] Add specific version...
+- [ ] Try installing on a new linux vm and check all works.
+- [ ] Try running in windows check all works.
+- [ ] Try running in wsl2 in winsows and check all works.
+- [ ] Update documentation, specifying that even if you use polars dataframes, the masks have to be pandas style masks...
+- [ ] Check to see if you can fix the windows error.
+- [ ] Add windows fix to changelog...
+- [ ] Respon to that guys windows error
