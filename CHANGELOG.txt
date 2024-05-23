@@ -1,5 +1,9 @@
 Change Log
 ===========
+0.2.2 (May 23, 2024)
+ — — — — — — — — — -
+- Added polars to install_requires section of setup.py
+
 0.2.1 (May 22, 2024)
  — — — — — — — — — -
 - Fixed bugs when printing pandas series

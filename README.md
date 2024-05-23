@@ -9,6 +9,8 @@ Scrollable Pandas and Polars DataFrames in the Terminal.
 pip install termpandas
 ```
 
+Note: This library is not compatible with Windows at the moment.
+
 ## Basic Usage
 
 ```python
@@ -58,6 +60,22 @@ try:
     tprint(result)
 except:
     print("Quit termpandas: No row selected")
+```
+
+## Polars Support
+
+- Note: Masks are not currently supported for Polars DataFrames. Convert to pandas DataFrames to utilize masks functionality.
+
+- Returning Selected Row is supported and works just like with Pandas DataFrames.
+
+- Example Usage:
+```python
+import polars as pl
+from termpandas import tprint
+
+# DataFrame needs to be collected
+df = pl.scan_csv('titanic.csv').collect()
+tprint(df)
 ```
 
 ## Available Colors
