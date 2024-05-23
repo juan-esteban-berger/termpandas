@@ -43,7 +43,7 @@ tprint(df, highlight=True)
 
 - `highlight_color`: Color of the selected row. Default is `Gray`.
 ```python
-tprint(df, highlight=True)
+tprint(df, highlight_color='Gray')
 ```
 
 - `masks`: Dictionary of masks to highlight rows. Default is `{}`. The keys are the colors and the values are the masks.
