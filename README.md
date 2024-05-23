@@ -68,7 +68,6 @@ except:
 
 - Returning Selected Row is supported and works just like with Pandas DataFrames.
 
-- Example Usage:
 ```python
 import polars as pl
 from termpandas import tprint
