@@ -1,5 +1,9 @@
 Change Log
 ===========
+0.2.3 (May 25, 2024)
+ — — — — — — — — — -
+- Fixed polars version in setup.py
+
 0.2.2 (May 23, 2024)
  — — — — — — — — — -
 - Added polars to install_requires section of setup.py

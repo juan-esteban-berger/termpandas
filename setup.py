@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='termpandas',
-    version='0.2.2',
+    version='0.2.3',
     url='https://github.com/juan-esteban-berger/termpandas',
     author='Juan Esteban Berger',
     author_email='juanestebanberger@gmail.com',
@@ -17,7 +17,7 @@ setup(
     install_requires=['pandas>=2.1.4',
                       'blessings>=1.7',
                       'curtsies>=0.4.2',
-                      'polars>=0.20.3'
+                      'polars>=0.18.0'
                       ],
     classifiers=[
         "Development Status :: 3 - Alpha",
